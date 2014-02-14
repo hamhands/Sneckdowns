@@ -22,9 +22,10 @@
 		  	})
 
 		  	$.getJSON("./sneck-geojson.json", function(data) {
+		  		var imgLoc = '<img src="' + feature.properties.img + '">'
 		  		var geojson = L.geoJson(data, {
 		  			onEachFeature: function (feature, layer) {
-		  				layer.bindPopup(feature.properties.img);
+		  				layer.bindPopup(imgLoc);
 		  			}
 		  		})
 		  		var map = new L.map("map", {
