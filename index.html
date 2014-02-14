@@ -30,7 +30,7 @@
 		  		var map = new L.map("map", {
 		    center: new L.LatLng(39.9419,-75.1519167),
 		    zoom: 15
-			}).fitBounds(geojson.getbounds());
+			}).fitBounds(geojson.getBounds());
 			cityTiles.addTo(map);
 			geojson.addTo(map);
 		  	
