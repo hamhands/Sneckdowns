@@ -24,13 +24,13 @@
 		  	$.getJSON("./sneck-geojson.json", function(data) {
 		  		var geojson = L.geoJson(data, {
 		  			onEachFeature: function (feature, layer) {
-		  				layer.bindPopup(feature.properties.img);
+		  				layer.bindPopup('<img src="' + feature.properties.img + '" width="200" height="267">');
 		  			}
 		  		})
 		  		var map = new L.map("map", {
 		    center: new L.LatLng(39.9419,-75.1519167),
 		    zoom: 15
-			}).fitBounds(geojson.getbounds());
+			}).fitBounds(geojson.getBounds());
 			cityTiles.addTo(map);
 			geojson.addTo(map);
 		  	
