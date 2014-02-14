@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "img": "http://thisoldcity.com/sites/default/files/images/Media%20browser/Morris1.jpg"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -75.16493260860443,
+              39.92874196092958
+            ],
+            [
+              -75.16485214233398,
+              39.9287337335933
+            ],
+            [
+              -75.16495406627655,
+              39.92865351701255
+            ],
+            [
+              -75.16493260860443,
+              39.92874196092958
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

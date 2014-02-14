@@ -4,7 +4,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 		<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
-		<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+		<script src="./jquery-1.11.0.min.js"></script>
 		<style type="text/css">
 			#map {
 				height: 100%;
@@ -14,20 +14,29 @@
 
 	<body>
 		<div id="map"></div>
-		<script src="sneck-geojson.js" type="text/javascript"></script>
 		<script>
 		//initilize map, define center, zoom level
-			var map = new L.map("map", {
-		    center: new L.LatLng(39.9419,-75.1519167),
-		    zoom: 15
-			}).locate({setView: true, maxZoom:16});
-
-		//set basemap, define max zoom, add to map
-		  	L.tileLayer('http://gis.phila.gov/arcgis/rest/services/BaseMaps/GrayBase_WM/MapServer/tile/{z}/{y}/{x}', {
+			var cityTiles = L.tileLayer('http://gis.phila.gov/arcgis/rest/services/BaseMaps/GrayBase_WM/MapServer/tile/{z}/{y}/{x}', {
 		    maxZoom: 20,
 		    minZoom: 11
-		  	}).addTo(map);
-		
+		  	})
+
+		  	$.getJSON("./sneck-geojson.json", function(data) {
+		  		var geojson = L.geoJson(data, {
+		  			onEachFeature: function (feature, layer) {
+		  				layer.bindPopup(feature.properties.img);
+		  			}
+		  		})
+		  		var map = new L.map("map", {
+		    center: new L.LatLng(39.9419,-75.1519167),
+		    zoom: 15
+			}).fitBounds(geojson.getbounds());
+			cityTiles.addTo(map);
+			geojson.addTo(map);
+		  	
+		  	});
+
+			
 		
 
 
