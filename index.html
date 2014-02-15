@@ -21,25 +21,15 @@
 		    minZoom: 11
 		  	});
 
-		  	var sneckStyle = {
-		  		"color: #00d100",
-		  		"opacity": 0.65
-		  	};
-
 		  	$.getJSON("./sneck-geojson.json", function(data) {
 		  		var geojson = L.geoJson(data, {
-<<<<<<< HEAD
-		  			style: function(feature) {
-		  				return {color: "#00d100", opacity: 0.65}
-		  			}
-=======
+
 		  			style: function (feature) {
 	  					return {
 	  						color: "#44cc32",
 	  						opacity: 0.60
 	  					}
 		  			},
->>>>>>> gh-pages
 		  			onEachFeature: function (feature, layer) {
 		  				layer.bindPopup('<img src="' + feature.properties.img + '" width="200" height="267">');
 		  			}
