@@ -19,10 +19,11 @@
 			var cityTiles = L.tileLayer('http://gis.phila.gov/arcgis/rest/services/BaseMaps/GrayBase_WM/MapServer/tile/{z}/{y}/{x}', {
 		    maxZoom: 20,
 		    minZoom: 11
-		  	})
+		  	});
 
 		  	$.getJSON("./sneck-geojson.json", function(data) {
 		  		var geojson = L.geoJson(data, {
+
 		  			style: function (feature) {
 	  					return {
 	  						color: "#44cc32",
