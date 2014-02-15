@@ -19,10 +19,18 @@
 			var cityTiles = L.tileLayer('http://gis.phila.gov/arcgis/rest/services/BaseMaps/GrayBase_WM/MapServer/tile/{z}/{y}/{x}', {
 		    maxZoom: 20,
 		    minZoom: 11
-		  	})
+		  	});
+
+		  	var sneckStyle = {
+		  		"color: #00d100",
+		  		"opacity": 0.65
+		  	};
 
 		  	$.getJSON("./sneck-geojson.json", function(data) {
 		  		var geojson = L.geoJson(data, {
+		  			style: function(feature) {
+		  				return {color: "#00d100", opacity: 0.65}
+		  			}
 		  			onEachFeature: function (feature, layer) {
 		  				layer.bindPopup('<img src="' + feature.properties.img + '" width="200" height="267">');
 		  			}
