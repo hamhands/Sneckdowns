@@ -4,7 +4,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 		<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
-		<script src="./jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
 		<style type="text/css">
 			#map {
 				height: 100%;
@@ -14,34 +14,42 @@
 
 	<body>
 		<div id="map"></div>
+		<script src="sneck-geojson.js" type="text/javascript"></script>
 		<script>
 		//initilize map, define center, zoom level
-			var cityTiles = L.tileLayer('http://gis.phila.gov/arcgis/rest/services/BaseMaps/GrayBase_WM/MapServer/tile/{z}/{y}/{x}', {
-		    maxZoom: 20,
-		    minZoom: 11
-		  	});
-
-		  	$.getJSON("./sneck-geojson.json", function(data) {
-		  		var geojson = L.geoJson(data, {
-
-		  			style: function (feature) {
-	  					return {
-	  						color: "#44cc32",
-	  						opacity: 0.60
-	  					}
-		  			},
-		  			onEachFeature: function (feature, layer) {
-		  				layer.bindPopup('<img src="' + feature.properties.img + '" width="200" height="267">');
-		  			}
-		  		})
-		  		var map = new L.map("map", {
+			var map = new L.map("map"/*, {
 		    center: new L.LatLng(39.9419,-75.1519167),
 		    zoom: 15
-			}).fitBounds(geojson.getBounds());
-			cityTiles.addTo(map);
-			geojson.addTo(map);
-		  	
-		  	});
+			}*/);//.locate({setView: true, maxZoom:16});;
+
+		//set basemap, define max zoom, add to map
+		  	L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
+		    maxZoom: 16,
+		  	}).addTo(map);
+
+		  	map.locate({setView: true, maxZoom: 16});
+		
+		 //set styles for polygon and line features, add to map
+
+		 	var polyStyle = {
+		 		"color": "#ff7800",
+		 		"weight"
+
+		 	}
+
+
+		  	L.geoJson(places, {
+		  		style: function(feature) {
+		  			switch(feature.properties.Stuff) {
+		  				case "Food/drink": return {color: "00ff1e"};
+		  				case "Shopping": return {color: "#ff0000"};
+		  				case "Cool Area": return {color: "#ff00e1"};
+		  				case "Orientation": return {color: "#ff00e1"};
+		  				
+		  			}
+		  		}
+		  	}).addTo(map);
+
 
 		</script>
 
