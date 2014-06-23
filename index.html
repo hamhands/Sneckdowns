@@ -17,7 +17,39 @@
 		<script src="sneck-geojson.js" type="text/javascript"></script>
 		<script>
 		//initilize map, define center, zoom level
+<<<<<<< HEAD
 			var map = new L.map("map"/*, {
+=======
+			var cityTiles = L.tileLayer('http://gis.phila.gov/arcgis/rest/services/BaseMaps/GrayBase_WM/MapServer/tile/{z}/{y}/{x}', {
+		    maxZoom: 20,
+		    minZoom: 11
+		  	});
+
+		  	var sneckStyle = {
+		  		"color: #00d100",
+		  		"opacity": 0.65
+		  	};
+
+		  	$.getJSON("./sneck-geojson.json", function(data) {
+		  		var geojson = L.geoJson(data, {
+<<<<<<< HEAD
+		  			style: function(feature) {
+		  				return {color: "#00d100", opacity: 0.65}
+		  			}
+=======
+		  			style: function (feature) {
+	  					return {
+	  						color: "#44cc32",
+	  						opacity: 0.60
+	  					}
+		  			},
+>>>>>>> gh-pages
+		  			onEachFeature: function (feature, layer) {
+		  				layer.bindPopup('<img src="' + feature.properties.img + '" width="200" height="267">');
+		  			}
+		  		})
+		  		var map = new L.map("map", {
+>>>>>>> parent of 70297ed... styling
 		    center: new L.LatLng(39.9419,-75.1519167),
 		    zoom: 15
 			}*/);//.locate({setView: true, maxZoom:16});;
