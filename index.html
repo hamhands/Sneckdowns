@@ -18,8 +18,7 @@
 		//initilize map, define center, zoom level
 			var cityTiles = L.tileLayer('http://gis.phila.gov/arcgis/rest/services/BaseMaps/GrayBase_WM/MapServer/tile/{z}/{y}/{x}', {
 		    maxZoom: 20,
-		    minZoom: 11,
-		    detectRetina: true
+		    minZoom: 11
 		  	});
 
 		  	$.getJSON("./sneck-geojson.json", function(data) {
